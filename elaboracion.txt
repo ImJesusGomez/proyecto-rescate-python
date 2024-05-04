@@ -1,0 +1,3 @@
+-- Pasos De Elaboración --
+
+1. Dar la bienvenida al usuario al juego
