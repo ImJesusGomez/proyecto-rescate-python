@@ -1,0 +1,110 @@
+RESCATE! Fire Rescue
+
+------ COMPONENTES ------
+> Jugadores: 6 fichas de bomber
+> Fichas de incendio: 33
+    ㄴ Tiene dos caras, que son llamas y humo
+> Fichas de punto de interés: 18 Fichas
+    ㄴ 6 Alarmas Falsas
+    ㄴ 12 Personas (2 son animales)
+> Cubos de daño: 24 Cubos
+> Fichas de Puerta: 8 Fichas
+    ㄴ Tiene dos caras, que son puerta cerrada y puerta abierta
+> Focos de Calor: 24 Fichas
+> Otras Fichas:
+    ㄴ Puntos de Acción: 21 Fichas
+    ㄴ Primeros Auxilios: 3 Fichas
+    ㄴ Materias Peligrosas: 6 Fichas
+> Vehículos:
+    ㄴ Ambulancia
+    ㄴ Camión (IMPORTANTE!! Este no se usará)
+> Dados
+    ㄴ Dado Triangular (8 caras)
+    ㄴ Dado Cuadrangular (6 Caras)
+> Tablero de Juego 
+    ㄴ Tiene dos caras: Cada uno representa un edificio distinto
+
+
+------ OBJETIVO DEL JUEGO ------
+ㄴ ¡Rescate! es un juego cooperativo; todos los jugadores están en el mismo   equipo y todos ganan o pierden a la vez. Para
+ganar los jugadores deberán rescatar a las personas atrapadas en el interior de un edificio en llamas antes de que el fuego
+se descontrole y acabe por derrumbar el edificio.
+
+
+------ JUEGO ------
+
+-- Preparativos --
+1. Coloca las fichas de puerta mostrando el símbolo “Cerrada” en cada una de las ocho entradas. En total son 8 puertas cerradas.
+2. Coloca una ficha de llamas en las casillas: [2,2 - 2,3 - 3,2 - 3,3 - 3,4 - 3,5 - 4,4 - 5,6 - 5,7 - 6,6]
+3. Deja en la caja 2 fichas de persona y 1 de falsa alarma. Mezcla y coloca una ficha de PDI con la cara boca arriba en cada una de estas casillas: [2,4 - 5,1 - 5,8]
+4. Deja las fichas de primeros auxilios, de materia peligrosa y de foco de calor, así como las las tarjetas de especialista y los vehículos (camión y ambulancia) en la caja.
+5. Cada jugador coloca su bombero en cualquiera de las casillas exteriores del edificio.
+6. Decidid conjuntamente quién será el primero en jugar. Si no llegáis a un acuerdo, el jugador más joven empieza.
+
+
+-- Realizar Acciones --
+ㄴ En tu turno dispondrás de 4 puntos de acción (PA) para gastar. 
+ㄴ También puedes pasar; los PA que no hayas usado se conservarán para el turno siguiente. Puedes guardar como máximo 4
+PA al final de tu turno. 
+ㄴ Acciones:
+    - Moverse: Mover tu bombero a una casilla adyacente:
+          • Moverse a una casilla que no esté en llamas: 1 PA.
+          • Moverse a una casilla en llamas: 2 PA.
+          • Trasladar una persona a una casilla despejada o a una casilla con humo: 2 PA. 
+          • Si te mueves a una casilla que contenga una ficha de PDI, se descubrirá esta ficha, mostrando si se trata de una persona o de una falsa alarma. 
+          • Desvelar una ficha de PDI es una acción que no tienen ningún coste (0 PA).
+          • Si trasladas a una persona fuera del edificio, felicidades: la habrás rescatado. 
+          • Puedes atravesar una pared destruida (un segmento de pared que tenga dos cubos de daño). 
+    - Abrir/Cerrar una puerta: Girar una ficha de puerta que limite con tu casilla: 1 PA.
+    - Extinguir: Utilizar tu equipo para apagar el fuego que tengas en tu casilla o en una casilla adyacente:
+          • Retirar una ficha de humo del tablero: 1 PA.
+          • Girar una ficha de llamas convirtiéndola en humo: 1 PA.
+          • Retirar una ficha de llamas del tablero: 2 PA.
+          • Normalmente es mejor extinguir por completo las llamas (2 PA), ya que el humo puede volver a prenderse.
+    - Derribar: Todos los bomberos llevan un hacha. El hacha se usa para derribar paredes, creando de este modo un acceso rápido para llegar a una persona o haciendo posible una ruta de escape para abandonar el edificio.
+          • Colocar un cubo de daño en un segmento de pared que limite con tu casilla: 2 PA.
+
+
+
+
+
+
+-- Propagración del fuego -- 
+
+ㄴ Primero los jugadores realizan las acciones. Después se deben tirar los dados para propagar el fuego. A partir del resultado obtenido, coloca una ficha de humo en la casilla resultante del tablero.
+ • Si en la casilla resultante ya hubiera una ficha de humo – Gira la ficha de humo para que quede en llamas y retira del tablero la otra ficha de humo. Recuerda: humo + humo = llamas.
+ • Si la casilla resultante estuviera adyacente a unas llamas – Gira la ficha de humo para que quede en llamas. Recuerda: humo adyacente a llamas = llamas.
+ • Si en la casilla resultante ya hubiera una ficha de llamas – ¡Ha habido una explosión! Sigue leyendo para ver qué efecto tiene.
+
+ㄴ Explosiones
+  - Cuando el fuego se propaga a una casilla que ya está en llamas, tiene lugar una explosión. Las explosiones propagan muy rápidamente el incendio y pueden dañar puertas y paredes, dejar aturdidos a los bomberos e incluso matar a las personas
+  - Una explosión irradia en las cuatro direcciones (arriba, abajo, izquierda y derecha) desde la casilla resultante de la tirada.
+  - Coloca una ficha de llamas en cada una de las casillas adyacentes que no tenga una ficha de llamas o bien, si la casilla contiene una ficha de humo, dale la vuelta para que quede en llamas (aun cuando la casilla estuviera fuera del edificio). 
+  - Coloca un cubo de daño en cualquier pared que limite con la casilla resultante. Retira cualquier ficha de puerta que limite con la casilla resultante.
+  - Si la casilla adyacente en cualquiera de las direcciones ya estuviera en llamas, se genera una onda expansiva.
+  - El efecto de la onda expansiva dependerá de aquello con que se tope primero:
+ • Casilla despejada (sin llamas ni humo) – Coloca una ficha de llamas en la casilla despejada, incluso si la casilla está fuera del edificio.
+ • Casilla con una ficha de humo – Gira la ficha de manera que quede en llamas.
+ • Pared – Coloca un cubo de daño en la pared. Recuerda que una pared que ya tenga dos cubos de daño se considera destruida y por lo tanto no detiene una onda expansiva.
+ • Puerta cerrada – Retira la ficha de puerta del tablero; ha sido destruida. Una entrada que no tenga una ficha de puerta se trata del mismo modo que una pared destruida. Atención: no coloques ningún cubo de daño en la puerta destruida.
+  - Llamarada: Gira todas las fichas de humo adyacentes a una casilla en llamas de modo que queden en llamas. 
+  - Aturdimientos: Un bombero queda aturdido si las llamas se propagan a su casilla, ya fuera por culpa de una explosión o por estar en una casilla con humo que empieza a arder. Un bombero que quede aturdido deberá ir hasta la ambulancia para recuperarse. Si el bombero aturdido estaba trasladando a una persona, la persona se pierde. Coloca la ficha de persona en la zona de víctimas que hay en el lateral del tablero.
+
+
+
+-- Puntos de Interés -- 
+ㄴ Al final de cada turno siempre debe haber 3 fichas de PDI (dentro o fuera del edificio). En caso de no haber se lanzan los dados para saber en que lugar estará. 
+ㄴ Si la casilla resultante tuviera una ficha de incendio (llamas o humo), retira la ficha de incendio
+antes de colocar la ficha de PDI. 
+ㄴ Si la casilla resultante tuviera un bombero, desvela inmediatamente (es decir, gira) la ficha
+de PDI y retírala si se trata de una falsa alarma. 
+ㄴ Fin de turno
+      - Después de haber repuesto todas las fichas de PDI termina el turno. 
+
+
+
+
+------ FIN DE LA PARTIDA ------
+ㄴ Derrumbe del edificio: La partida termina de inmediato con el derrumbe del edificio entero en cuanto se han colocado los 24 cubos de daño en el tablero. 
+ㄴ Victoria: Los jugadores habrán vencido en cuanto hayan rescatado a 7 personas. ¡Si lo deseáis, podéis seguir jugando para ver si conseguís rescatar a las 10 personas y lográis la partida perfecta!
+ㄴ Derrota: Los jugadores pierden si hay 4 o más personas entre las víctimas.
