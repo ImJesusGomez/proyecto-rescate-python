@@ -1,7 +1,7 @@
 RESCATE! Fire Rescue
 
 ------ COMPONENTES ------
-> Jugadores: 6 fichas de bomber
+> Jugadores: 6 fichas de bomberos
 > Fichas de incendio: 33
     ㄴ Tiene dos caras, que son llamas y humo
 > Fichas de punto de interés: 18 Fichas
