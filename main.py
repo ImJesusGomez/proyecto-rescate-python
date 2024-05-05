@@ -3,17 +3,19 @@ from tabulate import tabulate
 
 # 1. Damos la bienvenida al usuario
 def bienvenida_usuario():
-  print("BIENVENIDO A...: \n")
-  print("""
+  print("|BIENVENIDO A...|".center(65,'-'))
+  print("""\n
 ██╗██████╗░███████╗░██████╗░█████╗░░█████╗░████████╗███████╗██╗
 ██║██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
 ██║██████╔╝█████╗░░╚█████╗░██║░░╚═╝███████║░░░██║░░░█████╗░░██║
 ╚═╝██╔══██╗██╔══╝░░░╚═══██╗██║░░██╗██╔══██║░░░██║░░░██╔══╝░░╚═╝
 ██╗██║░░██║███████╗██████╔╝╚█████╔╝██║░░██║░░░██║░░░███████╗██╗
-╚═╝╚═╝░░╚═╝╚══════╝╚═════╝░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝╚═╝""")
-  comenzar = input("\nPulsa 1 para comenzar: \n")
+╚═╝╚═╝░░╚═╝╚══════╝╚═════╝░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝╚═╝\n""")
+  print("|Pulsa 1 para comenzar|".center(65, '-'))
 
-# 2. Creamos el diseño del tablero
+  comenzar = input("")
+
+# 2.1 Creamos el diseño del tablero
 def coordenadas_tablero():
   tablero_juego_coordenadas = [
     ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9'],
@@ -27,6 +29,38 @@ def coordenadas_tablero():
   ]
 
   return tablero_juego_coordenadas
+
+# 2.2 Definimos la lógica de nuestro tablero
+def logica_tablero():
+  """
+  Valor de la Casilla según su estado:
+  0: Casilla vacía
+  1: Pared en la parte superior (arriba)
+  2: Pared en el lado derecho (derecha)
+  4: Pared en la parte inferior (abajo)
+  8: Pared en el lado izquierdo (izquierda)
+  16: Puerta en la parte superior (arriba)
+  32: Puerta en el lado derecho (derecha)
+  64: Puerta en la parte inferior (abajo)
+  128: Puerta en el lado izquierdo (izquierda)
+  256: Casilla incendiada
+  512: Casilla con humo
+  1024: Persona en la casilla
+  2048: Casilla con "?"
+  """
+
+  tablero_juego = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [9, 1, 33, 1, 1, 8, 16, 1, 3, 0],
+    [8, 256, 256, 2052, 32, 25, 26, 27, 28, 29],
+    [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+    [40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+    [50, 51, 52, 53, 54, 55, 56, 57, 58, 59],
+    [60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
+    [70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
+                                              ]
+
+  return tablero_juego
 
 # 3. Preparacion del tablero
 def preparacion_tablero(tablero_juego):
