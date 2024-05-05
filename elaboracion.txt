@@ -1,5 +1,4 @@
 -- Pasos De Elaboración --
 
 1. Dar la bienvenida al usuario al juego [✅]
-2. Definir estructura del tablero [✅]
-3. Preparar el tablero [ ]
+2. Definir estructura y lógica del tablero [✅]
