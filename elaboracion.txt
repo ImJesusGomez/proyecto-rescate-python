@@ -2,3 +2,4 @@
 
 1. Dar la bienvenida al usuario al juego [✅]
 2. Definir estructura y lógica del tablero [✅]
+3. Definir el menú de opciones [✅]

@@ -17,11 +17,6 @@ def coordenadas_tablero():
   ]
   return tablero_juego_coordenadas
 
-mitablero = coordenadas_tablero()
-print(tabulate(mitablero, tablefmt='plain'))
-
-print('\n\n\n')
-
 def logica_tablero():
   tablero_juego_estructura = [
     [' ',' ', '▣', '▣',' ', '▣',' ', '▣', '▣',' ', '▣',' ', '▣', '','▣ ',' ', ' '],
@@ -34,18 +29,12 @@ def logica_tablero():
     [' ','||', '--', '--','--', '--','--', '▮', '--','--', '--','--', '--','--', '--','||', '▣'],
     ['▣','||', '▣', '▣',' ', '▣',' ', '▣', '▣','||', '▣',' ', '▣',' ||', '▣','||', '▣'],
     ['▣','||',  '▣', '▣',' ', '▣',' ', '▣', '▣','▮', '▣',' ', '▣',' ▮',  '▣','||', '▣'],
-    ['▣','--', '--', '--','--', '--',' ', '--', '--','--', '--','--', '--','--', '--','--', '▣'],
+    ['▣','--', '--', '--','--', '--','--', '--', '--','--', '--','--', '--','--', '--','--', '▣'],
     [' ',' ', '▣', '▣',' ', '▣',' ', '▣', '▣',' ', '▣',' ', '▣', ' ','▣',' ', ' '],
     
   ]
   
   return tablero_juego_estructura 
-
-miTablero2 = logica_tablero()
-print(tabulate(miTablero2, tablefmt='plain'))
-
-print('\n\n\n\n')
-
 
 def preparacion_tablero():
   tablero_juego_final = [
@@ -66,5 +55,13 @@ def preparacion_tablero():
   
   return tablero_juego_final
 
-miTablero3 = preparacion_tablero()
-print(tabulate(miTablero3, tablefmt='plain'))
+
+if __name__ == '__main__':
+  mitablero = coordenadas_tablero()
+  print(tabulate(mitablero, tablefmt='plain'))
+  print('\n\n\n')
+  miTablero2 = logica_tablero()
+  print(tabulate(miTablero2, tablefmt='plain'))
+  print('\n\n\n')
+  miTablero3 = preparacion_tablero()
+  print(tabulate(miTablero3, tablefmt='plain'))
