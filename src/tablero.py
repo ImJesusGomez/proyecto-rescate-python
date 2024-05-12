@@ -56,6 +56,11 @@ def preparacion_tablero():
   return tablero_juego_final
 
 
+
+# Creamos una función que nos facilite mostrar al usuario el tablero de juego con la libreria tabulate
+def imprimir_tablero(tablero):
+  print(tabulate(tablero, tablefmt='plain'))
+
 if __name__ == '__main__':
   mitablero = coordenadas_tablero()
   print(tabulate(mitablero, tablefmt='plain'))
