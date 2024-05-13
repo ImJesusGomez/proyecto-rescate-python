@@ -71,6 +71,7 @@ def main():
   direccion = ''
   i = 0
   j = 0
+  puntos_de_accion = [4, 4, 4, 4, 4, 4]
 
   print("-".center(65, "-"))
   print("\nComencemos a jugar...\n\n")
@@ -149,18 +150,26 @@ def main():
                 print("\nCasilla no válida")
                 casilla = True
           else:
-            i, j = posicion_actual(tablero_de_juego, jugadores_visual[jugador])
-            print("Indica en qué direccion quieres moverte")
-            direccion = input("Posición: ")
+            while(puntos_de_accion[jugador] > 0):
+              # Empezamos el juego oficialmente en el que el jugador deberá elegir que acción hacer
+              print("\nTablero de Juego: \n")
+              imprimir_tablero(tablero_de_juego)
+              print("\nMenú de Acciones: ")
+              accion = int(input("1. Moverse\n2. Apagar Fuego o Humo\n3. Abrir Puerta\nAcción: "))
+              if(accion == 1):
+                i, j = posicion_actual(tablero_de_juego, jugadores_visual[jugador])
+                print("Indica en qué direccion quieres moverte")
+                direccion = input("Posición: ")
 
-            if(direccion == "arriba"):
-              tablero_de_juego[i-1][j] = jugadores_visual[jugador]
-            elif(direccion == "izquierda"):
-              tablero_de_juego[i][j-1] = jugadores_visual[jugador]
-            elif(direccion == "derecha"):
-              tablero_de_juego[i][j+1] = jugadores_visual[jugador]
-            elif(direccion == "abajo"):
-              tablero_de_juego[i+1][j] = jugadores_visual[jugador]
+                if(direccion == "arriba"):
+                  tablero_de_juego[i-1][j] = jugadores_visual[jugador]
+                elif(direccion == "izquierda"):
+                  tablero_de_juego[i][j-1] = jugadores_visual[jugador]
+                elif(direccion == "derecha"):
+                  tablero_de_juego[i][j+1] = jugadores_visual[jugador]
+                elif(direccion == "abajo"):
+                  tablero_de_juego[i+1][j] = jugadores_visual[jugador]
+                tablero_de_juego[i][j] = '⊡'
         turno += 1
     # Mostramos el estado actual del tablero de juego
     elif(opcion == 6):
