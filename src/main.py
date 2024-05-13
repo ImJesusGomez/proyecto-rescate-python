@@ -47,10 +47,13 @@ def main():
   tablero_coordenadas = coordenadas_tablero()
   tablero_estado_base = logica_tablero()
   tablero_de_juego = preparacion_tablero()
+  jugadores_visual = ['♚','♛', '♜', '♝', '♞', '♟']
   jugadores = 0
   perder = False
   turno = 0
-  jugadores_visual = ['♚','♛', '♜', '♝', '♞', '♟']
+  coordenada = ''
+  casillas_iniciales = ['0.2', '0.3', '0.5', '0.7', '0.8', '0.10', '0.12', '0.14', '2.0', '3.0', '5.0', '6.0', '8.0', '9.0', '11.2', '11.3', '11.5', '11.7', '11.8', '11.8', '11.10', '11.12', '11.14', '2.16', '3.16', '5.16', '6.16', '8.16', '9.16']
+  casilla_valida = True
 
   print("-".center(65, "-"))
   print("\nComencemos a jugar...\n\n")
@@ -108,19 +111,26 @@ def main():
             continuar = False
     #Comenzamos con la ejecución principal de nuestro juego
     elif(opcion == 5):
-      if(jugadores == 0):
+      if(jugadores == 0): # Usamos un if para validar que el usuario ha ingresado anteriormente la cantidad de jugadores
         print("\n\nPara jugar debes primero indicar cuántos jugadores van a jugar!!!")
-      else:
-        k = 0
+      else: 
         for jugador in range(jugadores):
-          if(turno == 0):
-            print('\nTablero de Juego: ')
-            imprimir_tablero(tablero_de_juego)
-            coordenada = input(("Indica las coordenadas de la casilla en la que deseas iniciar"))
-            i = int(coordenada[0])
-            j = int(coordenada[2:])
-            tablero_de_juego[i][j] = jugadores_visual[k]
-            k += 1
+          if(turno == 0): # Empezamos con el turno 0, en el cual el jugador deberá indicar donde posicionará su jugador
+            while(casilla_valida): # Validamos que la casilla en la que inicio el jugador sea valida
+              print("\nIndica las coordenadas de la casilla en la que deseas iniciar\nCasillas Disponibles:")
+              for casilla in casillas_iniciales:
+                print(casilla, end = ' ')
+              coordenada = input("\nCoordenada: ")
+              if coordenada in casillas_iniciales:
+                i = int(coordenada[0])
+                j = int(coordenada[2:])
+                tablero_de_juego[i][j] = jugadores_visual[jugador]
+                print('\nTablero de Juego: ')
+                imprimir_tablero(tablero_de_juego)
+                casilla_valida = False
+              else:
+                print("\nCasilla no válida")
+                casilla = True
           else:
             pass
         turno += 1
@@ -129,7 +139,7 @@ def main():
         print('\nTablero de Juego: ')
         imprimir_tablero(tablero_de_juego)
     elif(opcion == 7):
-      print("Ser bombero no es trabajo para todos. Hasta la próxima! ")
+      print("\nSer bombero no es trabajo para todos. Hasta la próxima!!! ")
       break
   
 
