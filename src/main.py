@@ -38,6 +38,19 @@ def lanzar_dados():
   return resultado, i, j
 
 
+def posicion_actual(tablero, jugador):
+  # Recorremos las filas de la matriz
+  for i, fila in enumerate(tablero):
+    # Recorremos las columnas de la fila actual
+    for j, valor in enumerate(fila):
+      # Comparamos el valor actual con el elemento buscado
+      if valor == jugador:
+        # Si se encuentra el elemento, retornamos su ubicación
+        return i, j
+  
+  return None
+
+
 # Empezamos con la funcion que se encargará de ejecutar nuestro juego
 def main():
   # Empezamos la ejecución de nuestro código
@@ -45,8 +58,8 @@ def main():
 
   # Creamos las variables que usaremos a lo largo del proyecto
   tablero_coordenadas = coordenadas_tablero()
-  tablero_estado_base = logica_tablero()
   tablero_de_juego = preparacion_tablero()
+  tablero_estado_base = logica_tablero()
   jugadores_visual = ['♚','♛', '♜', '♝', '♞', '♟']
   jugadores = 0
   perder = False
@@ -54,6 +67,10 @@ def main():
   coordenada = ''
   casillas_iniciales = ['0.2', '0.3', '0.5', '0.7', '0.8', '0.10', '0.12', '0.14', '2.0', '3.0', '5.0', '6.0', '8.0', '9.0', '11.2', '11.3', '11.5', '11.7', '11.8', '11.8', '11.10', '11.12', '11.14', '2.16', '3.16', '5.16', '6.16', '8.16', '9.16']
   casilla_valida = True
+  cubos_dmg = 0
+  direccion = ''
+  i = 0
+  j = 0
 
   print("-".center(65, "-"))
   print("\nComencemos a jugar...\n\n")
@@ -132,7 +149,18 @@ def main():
                 print("\nCasilla no válida")
                 casilla = True
           else:
-            pass
+            i, j = posicion_actual(tablero_de_juego, jugadores_visual[jugador])
+            print("Indica en qué direccion quieres moverte")
+            direccion = input("Posición: ")
+
+            if(direccion == "arriba"):
+              tablero_de_juego[i-1][j] = jugadores_visual[jugador]
+            elif(direccion == "izquierda"):
+              tablero_de_juego[i][j-1] = jugadores_visual[jugador]
+            elif(direccion == "derecha"):
+              tablero_de_juego[i][j+1] = jugadores_visual[jugador]
+            elif(direccion == "abajo"):
+              tablero_de_juego[i+1][j] = jugadores_visual[jugador]
         turno += 1
     # Mostramos el estado actual del tablero de juego
     elif(opcion == 6):
