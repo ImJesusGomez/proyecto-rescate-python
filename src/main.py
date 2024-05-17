@@ -1,8 +1,11 @@
 # Importamos la libreria tabulate que no ayuda a darle una estructura y orden a nuestro tablero
 from tablero import coordenadas_tablero
+# Importamos las funciones de nuestro tablero
 from tablero import logica_tablero
 from tablero import preparacion_tablero
 from tablero import imprimir_tablero
+
+# Importamos el modulo random 
 import random
 
 
@@ -17,7 +20,7 @@ def bienvenida_usuario():
 ╚═╝██╔══██╗██╔══╝░░░╚═══██╗██║░░██╗██╔══██║░░░██║░░░██╔══╝░░╚═╝
 ██╗██║░░██║███████╗██████╔╝╚█████╔╝██║░░██║░░░██║░░░███████╗██╗
 ╚═╝╚═╝░░╚═╝╚══════╝╚═════╝░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝╚═╝\n""")
-  print("|Pulsa start para comenzar|".center(65, '-'))
+  print("|Pulsa enter para comenzar|".center(65, '-'))
   comenzar = input("")
 
 
@@ -29,7 +32,10 @@ def lanzar_dados():
                         '6.12', '6.14', '8.2', '8.3', '8.5', '8.7', '8.8', '8.10', '8.12', '8.14', '9.2', '9.3', '9.5', '9.7', 
                         '9.8', '9.10', '9.12', '9.14']
   
+  # Escoge un resultado aleatorio
   resultado = random.choice(resultados_posibles)
+
+  # Lo dividimos en dos partes para obtener las coordenadas
   partes = resultado.split('.')
   i = partes[0]
   i = int(i)
@@ -39,6 +45,7 @@ def lanzar_dados():
   return resultado, i, j
 
 
+# Creamos una función para conocer la posicion actual del jugador y utilizarla en el juego 
 def posicion_actual(tablero, jugador):
   # Recorremos las filas de la matriz
   for i, fila in enumerate(tablero):
@@ -55,7 +62,7 @@ def posicion_actual(tablero, jugador):
 
 # Empezamos con la funcion que se encargará de ejecutar nuestro juego
 def main():
-  # Empezamos la ejecución de nuestro código
+  # Empezamos la ejecución de nuestro código dando la bienvenida
   bienvenida_usuario()
 
   # Creamos las variables que usaremos a lo largo del proyecto
@@ -67,6 +74,10 @@ def main():
   turno = 0
   coordenada = ''
   casillas_iniciales = ['0.2', '0.3', '0.5', '0.7', '0.8', '0.10', '0.12', '0.14', '2.0', '3.0', '5.0', '6.0', '8.0', '9.0', '11.2', '11.3', '11.5', '11.7', '11.8', '11.8', '11.10', '11.12', '11.14', '2.16', '3.16', '5.16', '6.16', '8.16', '9.16']
+  casillas_iniciales_superiores = ['0.2', '0.3', '0.5', '0.7', '0.8', '0.10', '0.12', '0.14']
+  casillas_iniciales_izquierda = ['2.0', '3.0', '5.0', '6.0', '8.0', '9.0']
+  casillas_iniciales_inferiores = ['11.2', '11.3', '11.5', '11.7', '11.8', '11.8', '11.10', '11.12', '11.14']
+  casillas_iniciales_derecha = ['2.16', '3.16', '5.16', '6.16', '8.16', '9.16']
   cubos_dmg = 0
   direccion = ''
   i = 0
@@ -136,7 +147,6 @@ def main():
             continuar = False
     #Comenzamos con la ejecución principal de nuestro juego
     elif(opcion == 5):
-      print(f"TURNO: {turno}")
       if(jugadores == 0): # Usamos un if para validar que el usuario ha ingresado anteriormente la cantidad de jugadores
         print("\n\nPara jugar debes primero indicar cuántos jugadores van a jugar!!!")
       else: 
@@ -146,7 +156,17 @@ def main():
             while(casilla_valida): # Validamos que la casilla en la que inicio el jugador sea valida
               print("\nIndica las coordenadas de la casilla en la que deseas iniciar\nCasillas Disponibles:")
               # Imprimimos las casillas donde el usuario puede iniciar
-              for casilla in casillas_iniciales:
+              print("Casillas Superiores: ") 
+              for casilla in casillas_iniciales_superiores:
+                print(casilla, end = ' ')
+              print("\nCasillas Inferiores: ")
+              for casilla in casillas_iniciales_inferiores:
+                print(casilla, end = ' ')
+              print("\nCasillas Derecha: ") 
+              for casilla in casillas_iniciales_derecha:
+                print(casilla, end = ' ')
+              print("\nCasillas Izquierda: ")
+              for casilla in casillas_iniciales_izquierda:
                 print(casilla, end = ' ')
               # Le pedimos al usuario que ingrese la casilla
               coordenada = input("\nCoordenada: ")
@@ -165,6 +185,7 @@ def main():
                 print("\nCasilla no válida")
                 casilla_valida = True
         else: 
+          print(f"Turno {turno}")
           for jugador in range(jugadores):
             print("-".center(50,"-"))
             print(f"Turno de {jugadores_visual[jugador]}")
@@ -191,14 +212,18 @@ def main():
                   if(direccion == "arriba"):
                     # Hacemos validaciones para que la direccion en que se quiere mover el jugador es valida
                     # Si el jugador se encuentra en una casilla en la que no se puede mover
-                    if tablero_de_juego[i-1][j] == '--' or tablero_de_juego[i-1][j] == '- ' or tablero_de_juego[i-1][j] in jugadores_visual or tablero_de_juego[i-1][j] == '✦' or tablero_de_juego[i-1][j] == '✧':
+                    if tablero_de_juego[i-1][j] in ['--', '- ','✦','✧'] + jugadores_visual:
                       print(f"No puedes moverte hacía {direccion}" )
                       direccion_valida = True
-                    # Si el jugador se mueve a una casilla en blanco o a una puerta se moverá automaticamente una casilla más
+                    # Si el jugador se mueve a una casilla en blanco o a una puerta se moverá automaticamente una casilla más o no
                     elif tablero_de_juego[i-1][j] == ' ' or tablero_de_juego[i-1][j] == '▯':
-                      tablero_de_juego[i-2][j] = jugadores_visual[jugador]
-                      puntos_de_accion[jugador] -= energia[jugador]
-                      direccion_valida = False
+                      if tablero_de_juego[i-2][j] in ['--', '- ','✦','✧', ' '] + jugadores_visual:
+                        print(f"No puedes moverte hacía {direccion}" )
+                        direccion_valida = True
+                      else:
+                        tablero_de_juego[i-2][j] = jugadores_visual[jugador]
+                        puntos_de_accion[jugador] -= energia[jugador]
+                        direccion_valida = False
                     # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i-1][j] == '✆':
                       pdi = random.choice[puntos_de_interes]
@@ -225,14 +250,18 @@ def main():
                   elif(direccion == "izquierda"):
                     # Hacemos validaciones para que la direccion en que se quiere mover el jugador es valida
                     # Si el jugador se encuentra en una casilla en la que no se puede mover
-                    if tablero_de_juego[i][j-1] == '||' or tablero_de_juego[i][j-1] == '| ' or tablero_de_juego[i][j-1] in jugadores_visual or tablero_de_juego[i][j-1] == '✦' or tablero_de_juego[i][j-1] == '✧': 
+                    if tablero_de_juego[i][j-1] in ['||', '| ', '✦', '✧'] + jugadores_visual: 
                       print(f"No puedes moverte hacía {direccion}" )
                       direccion_valida = True
                     # Si el jugador se mueve a una casilla en blanco o a una puerta se moverá automaticamente una casilla más
                     elif tablero_de_juego[i][j-1] == ' ' or tablero_de_juego[i][j-1] == '▯':
-                      tablero_de_juego[i][j-2] = jugadores_visual[jugador]
-                      puntos_de_accion[jugador] -= energia[jugador]
-                      direccion_valida = False
+                      if  tablero_de_juego[i][j-2] in ['||', '| ', '✦', '✧', ' '] + jugadores_visual:
+                        print(f"No puedes moverte hacía {direccion}" )
+                        direccion_valida = True
+                      else:
+                        tablero_de_juego[i][j-2] = jugadores_visual[jugador]
+                        puntos_de_accion[jugador] -= energia[jugador]
+                        direccion_valida = False
                     elif tablero_de_juego[i][j-1] == '✆':
                       pdi = random.choice[puntos_de_interes]
                       puntos_de_interes.pop(pdi)
@@ -258,14 +287,18 @@ def main():
                   elif(direccion == "derecha"):
                     # Hacemos validaciones para que la direccion en que se quiere mover el jugador es valida
                     # Si el jugador se encuentra en una casilla en la que no se puede mover
-                    if tablero_de_juego[i][j+1] == '--' or tablero_de_juego[i][j+1] == '- ' or tablero_de_juego[i][j+1] in jugadores_visual or tablero_de_juego[i][j+1] == '✦' or tablero_de_juego[i][j+1] == '✧':
+                    if tablero_de_juego[i][j+1] in ['--', '- ', '✦', '✧'] + jugadores_visual:
                       print(f"No puedes moverte hacía {direccion}" )
                       direccion_valida = True
                     # Si el jugador se mueve a una casilla en blanco o a una puerta abierta se moverá automaticamente una casilla más
                     elif tablero_de_juego[i][j+1] == ' ' or tablero_de_juego[i][j+1] == '▯':
-                      tablero_de_juego[i][j+2] = jugadores_visual[jugador]
-                      puntos_de_accion[jugador] -= energia[jugador]
-                      direccion_valida = False
+                      if tablero_de_juego[i][j+2] in ['--', '- ', '✦', '✧'] + jugadores_visual:
+                        print(f"No puedes moverte hacía {direccion}" )
+                        direccion_valida = True
+                      else:
+                        tablero_de_juego[i][j+2] = jugadores_visual[jugador]
+                        puntos_de_accion[jugador] -= energia[jugador]
+                        direccion_valida = False
                     # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i][j+1] == '✆':
                       pdi = random.choice[puntos_de_interes]
@@ -292,14 +325,18 @@ def main():
                   elif(direccion == "abajo"):
                     # Hacemos validaciones para que la direccion en que se quiere mover el jugador es valida
                     # Si el jugador se encuentra en una casilla en la que no se puede mover
-                    if tablero_de_juego[i+1][j] == '--' or tablero_de_juego[i+1][j] == '- ' or tablero_de_juego[i+1][j] in jugadores_visual or tablero_de_juego[i+1][j] == '✦' or tablero_de_juego[i+1][j] == '✧':
+                    if tablero_de_juego[i+1][j] in ['--', '- ', '✦', '✧'] + jugadores_visual:
                       print(f"No puedes moverte hacía {direccion}" )
                       direccion_valida = True
                     # Si el jugador se mueve a una casilla en blanco o a una puerta se moverá automaticamente una casilla más
                     elif tablero_de_juego[i+1][j] == ' ' or tablero_de_juego[i+1][j] == '▯':
-                      tablero_de_juego[i+2][j] = jugadores_visual[jugador]
-                      puntos_de_accion[jugador] -= energia[jugador]
-                      direccion_valida = False
+                      if tablero_de_juego[i+2][j] in ['--', '- ', '✦', '✧'] + jugadores_visual:
+                        print(f"No puedes moverte hacía {direccion}" )
+                        direccion_valida = True
+                      else:
+                        tablero_de_juego[i+2][j] = jugadores_visual[jugador]
+                        puntos_de_accion[jugador] -= energia[jugador]
+                        direccion_valida = False
                     # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i+1][j] == '✆':
                       pdi = random.choice[puntos_de_interes]
