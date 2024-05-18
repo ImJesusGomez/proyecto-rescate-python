@@ -198,7 +198,7 @@ def main():
               print("\nTablero de Juego: \n")
               imprimir_tablero(tablero_de_juego)
               print("\nMenú de Acciones: ")
-              accion = int(input("1. Moverse\n2. Apagar Fuego\n3. Apagar Humo\n4. Abrir Puerta\n5. Cerrar Puerta\n6. Salir\nAcción: "))
+              accion = int(input("1. Moverse\n2. Apagar Fuego\n3. Apagar Humo\n4. Abrir Puerta\n5. Cerrar Puerta\n\nAcción: "))
               i, j = posicion_actual(tablero_de_juego, jugadores_visual[jugador]) # Obtenemos la posicion actual del jugador para poder realizar las acciones
               # Comenzamos con la ejecución para que el jugador pueda moverse
               if(accion == 1):
@@ -207,7 +207,7 @@ def main():
 
                 while(direccion_valida):
                   direccion_valida = True
-                  print("Indica en qué direccion quieres moverte o presiona 1 para salir")
+                  print("Indica en qué direccion quieres moverte")
                   direccion = input("Posición: ")
                   # ! ARRIBA
                   if(direccion == "arriba"):
@@ -364,7 +364,7 @@ def main():
                       puntos_de_accion[jugador] -= energia[jugador]
                       direccion_valida = False
                   else:
-                    direccion_valida = False
+                    direccion_valida = True
               # Comenzamos con la ejecución para apagar fuego
               elif(accion == 2):
                 apagar_fuego = True
@@ -397,7 +397,9 @@ def main():
                   else:
                     print("\nNo hay ningún fuego alrededor!!!")
                     apagar_fuego = False
+              # Comenzamos con la logica para apagar el humo
               elif(accion == 3):
+                
                 apagar_humo = True
                 while(apagar_humo):
                 # Comprobamos si hay un humo que apagar alrededor del jugador
@@ -428,6 +430,56 @@ def main():
                   else:
                     print("\nNo hay ningún humo alrededor!!!")
                     apagar_humo = False
+              # Comenzamos con la ejecucion para Abrir Puerta
+              elif(accion == 4):
+                # Comprobamos si hay una puerta alrededor de nosotros
+                if(tablero_de_juego[i-1][j] == '▮' or tablero_de_juego[i+1][j] == '▮' or tablero_de_juego[i][j-1] == '▮' or tablero_de_juego[i][j+1] == '▮'):
+                  # En este caso no hay necesidad de preguntarle al usuario en que direccion quiere abrir la puerta
+                  
+                  # Puerta en la dirrección de arriba
+                  if(tablero_de_juego[i-1][j] == '▮'):
+                    tablero_de_juego[i-1][j] = '▯'
+                    puntos_de_accion[jugador] -= energia[jugador]
+                  # Puerta en la dirección de abajo
+                  elif(tablero_de_juego[i+1][j] == '▮'):
+                    tablero_de_juego[i+1][j] = '▯'
+                    puntos_de_accion[jugador] -= energia[jugador]
+                  # Puerta en la dirección de izquierda
+                  elif(tablero_de_juego[i][j-1] == '▮'):
+                    tablero_de_juego[i][j-1] = '▯'
+                    puntos_de_accion[jugador] -= energia[jugador]
+                  # Puerta en la dirección de derecha
+                  elif(tablero_de_juego[i][j+1] == '▮'):
+                    tablero_de_juego[i][j+1] = '▯'
+                    puntos_de_accion[jugador] -= energia[jugador]
+                else:
+                  print("\nNo hay ninguna puerta cerrada alrededor!!")
+              # Comenzamos con la ejecucion para Cerrar Puerta
+              elif(accion == 5):
+                # Comprobamos si hay una puerta alrededor de nosotros
+                if(tablero_de_juego[i-1][j] == '▯' or tablero_de_juego[i+1][j] == '▯' or tablero_de_juego[i][j-1] == '▯' or tablero_de_juego[i][j+1] == '▯'):
+                  # En este caso no hay necesidad de preguntarle al usuario en que direccion quiere abrir la puerta
+                  
+                  # Puerta en la dirrección de arriba
+                  if(tablero_de_juego[i-1][j] == '▯'):
+                    tablero_de_juego[i-1][j] = '▮'
+                    puntos_de_accion[jugador] -= energia[jugador]
+                  # Puerta en la dirección de abajo
+                  elif(tablero_de_juego[i+1][j] == '▯'):
+                    tablero_de_juego[i+1][j] = '▮'
+                    puntos_de_accion[jugador] -= energia[jugador]
+                  # Puerta en la dirección de izquierda
+                  elif(tablero_de_juego[i][j-1] == '▯'):
+                    tablero_de_juego[i][j-1] = '▮'
+                    puntos_de_accion[jugador] -= energia[jugador]
+                  # Puerta en la dirección de derecha
+                  elif(tablero_de_juego[i][j+1] == '▯'):
+                    tablero_de_juego[i][j+1] = '▮'
+                    puntos_de_accion[jugador] -= energia[jugador]
+                else:
+                  print("\nNo hay ninguna puerta abierta alrededor!!")
+              else:
+                print("\nAcción Inválida")
         turno += 1
     # Mostramos el estado actual del tablero de juego
     elif(opcion == 6):
