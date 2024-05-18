@@ -42,7 +42,7 @@ def lanzar_dados():
   j = partes[1]
   j = int(j)
 
-  return resultado, i, j
+  return i, j
 
 
 # Creamos una función para conocer la posicion actual del jugador y utilizarla en el juego 
@@ -79,6 +79,7 @@ def main():
   casillas_iniciales_inferiores = ['11.2', '11.3', '11.5', '11.7', '11.8', '11.8', '11.10', '11.12', '11.14']
   casillas_iniciales_derecha = ['2.16', '3.16', '5.16', '6.16', '8.16', '9.16']
   cubos_dmg = 0
+  pdi_en_tablero = 3
   direccion = ''
   i = 0
   j = 0
@@ -86,11 +87,13 @@ def main():
   puntos_de_interes = [True, True, True, True, True, True, True, True, True, True, True, True, False, False, False, False, False, False]
   con_persona = [False, False, False, False, False, False]
   energia = [1, 1, 1, 1, 1, 1]
+  victimas_salvadas = 0
   # Variables que usamos para ciclos while
   perder = False
   casilla_valida = True
   direccion_valida = True
   apagar_fuego = True
+  lanzamiento_valido = True
 
   print("-".center(65, "-"))
   print("\nComencemos a jugar...\n\n")
@@ -480,6 +483,45 @@ def main():
                   print("\nNo hay ninguna puerta abierta alrededor!!")
               else:
                 print("\nAcción Inválida")
+        
+        # Una vez se ha terminado el turno de todos los jugadores, tenemos que preparar el tablero para el siguiente turno
+        # 1. Primero verificamos que en el tablero haya tres puntos de interes
+          pdi_en_tablero = 0 # Inicializamos en cero para saber cuantos pdi hay 
+
+          for fila in tablero_de_juego: # Usamos un ciclo for para recorrer toda la matriz y buscar los pdi
+            for valor in fila:
+              if valor == '✆':
+                pdi_en_tablero += 1
+        
+        # En caso de que los pdi no hayan sido tres, usamos un ciclo while para colocar en nuestro tablero los pdi que faltan
+          while(pdi_en_tablero != 3): 
+            # Validamos que la posicion en donde se colocará el pdi sea válida
+            while(lanzamiento_valido):
+              i, j = lanzar_dados()
+              # En caso de que la posicion este ocupada por un valor en el que no puede estar
+              if(tablero_de_juego[i][j] in ['--', '- ', '||', '| ', '✆', ' ']):
+                lanzamiento_valido = True
+              # En caso de que la posicion este ocupada por un jugador se desvelará automaticamente
+              elif(tablero_de_juego[i][j] in jugadores_visual):
+                pdi = random.choice[puntos_de_interes]
+                puntos_de_interes.pop(pdi)
+
+                # Si pdi es True entonces...
+                if(pdi):
+                  print("\nHaz encontrado una víctima escodida. El equipo de rescate la ha salvado.")
+                  victimas_salvadas += 1
+                  lanzamiento_valido = False
+                  pdi_en_tablero += 1
+                else:
+                  print("Era una falsa alarma")
+                  lanzamiento_valido = False
+                  pdi_en_tablero += 1
+              else:
+                tablero_de_juego[i][j] = '✆'
+                lanzamiento_valido = False
+                pdi_en_tablero += 1
+        
+        imprimir_tablero(tablero_de_juego)
         turno += 1
     # Mostramos el estado actual del tablero de juego
     elif(opcion == 6):
