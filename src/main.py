@@ -90,6 +90,7 @@ def main():
   perder = False
   casilla_valida = True
   direccion_valida = True
+  apagar_fuego = True
 
   print("-".center(65, "-"))
   print("\nComencemos a jugar...\n\n")
@@ -189,6 +190,7 @@ def main():
           for jugador in range(jugadores):
             print("-".center(50,"-"))
             print(f"Turno de {jugadores_visual[jugador]}")
+            puntos_de_accion = [4, 4, 4, 4, 4, 4]
             while(puntos_de_accion[jugador] >= 1):
               if(con_persona[jugador] ==  True): energia[jugador] = 2 
               else: energia[jugador] = 1
@@ -196,11 +198,10 @@ def main():
               print("\nTablero de Juego: \n")
               imprimir_tablero(tablero_de_juego)
               print("\nMenú de Acciones: ")
-              accion = int(input("1. Moverse\n2. Apagar Fuego o Humo\n3. Abrir Puerta\nAcción: "))
-
+              accion = int(input("1. Moverse\n2. Apagar Fuego\n3. Apagar Humo\n4. Abrir Puerta\n5. Cerrar Puerta\n6. Salir\nAcción: "))
+              i, j = posicion_actual(tablero_de_juego, jugadores_visual[jugador]) # Obtenemos la posicion actual del jugador para poder realizar las acciones
               # Comenzamos con la ejecución para que el jugador pueda moverse
               if(accion == 1):
-                i, j = posicion_actual(tablero_de_juego, jugadores_visual[jugador])
                 tablero_de_juego[i][j] = '▣'
                 direccion_valida = True
 
@@ -364,6 +365,69 @@ def main():
                       direccion_valida = False
                   else:
                     direccion_valida = False
+              # Comenzamos con la ejecución para apagar fuego
+              elif(accion == 2):
+                apagar_fuego = True
+                while(apagar_fuego):
+                # Comprobamos si hay un fuego que apagar alrededor del jugador
+                  if(tablero_de_juego[i-1][j] == '✦' or tablero_de_juego[i+1][j] == '✦' or tablero_de_juego[i][j-1] == '✦' or tablero_de_juego[i][j+1] == '✦'):
+                    direccion_fuego = input("Indica en qué dirección quieres apagar el fuego (arriba - abajo - derecha - izquierda)\nDirección: ")
+                    
+                    # En la direccion en la que ingreso el usuario apagamos el fuego
+                    if(direccion_fuego == "arriba"):
+                      tablero_de_juego[i-1][j] = '✧' 
+                      puntos_de_accion[jugador] -= energia[jugador]
+                      apagar_fuego = False
+                    elif(direccion_fuego == "abajo"):
+                      tablero_de_juego[i+1][j] = '✧' 
+                      puntos_de_accion[jugador] -= energia[jugador]
+                      apagar_fuego = False
+                    elif(direccion_fuego == "derecha"):
+                      tablero_de_juego[i][j+1] = '✧' 
+                      puntos_de_accion[jugador] -= energia[jugador]
+                      apagar_fuego = False
+                    elif(direccion_fuego == "izquierda"):
+                      tablero_de_juego[i][j-1] = '✧' 
+                      puntos_de_accion[jugador] -= energia[jugador]
+                      apagar_fuego = False
+                    else:
+                      print("\nDirección Inválida")
+                      apagar_fuego = True
+                  # En caso de que no se encuentre ningun fuego alrededor vuelve al menú de acciones
+                  else:
+                    print("\nNo hay ningún fuego alrededor!!!")
+                    apagar_fuego = False
+              elif(accion == 3):
+                apagar_humo = True
+                while(apagar_humo):
+                # Comprobamos si hay un humo que apagar alrededor del jugador
+                  if(tablero_de_juego[i-1][j] == '✧' or tablero_de_juego[i+1][j] == '✧' or tablero_de_juego[i][j-1] == '✧' or tablero_de_juego[i][j+1] == '✧'):
+                    direccion_humo = input("Indica en qué dirección quieres apagar el humo (arriba - abajo - derecha - izquierda)\nDirección: ")
+
+                    # En la direccion en la que ingreso el usuario apagamos el humo
+                    if(direccion_humo == "arriba"):
+                      tablero_de_juego[i-1][j] = '▣' 
+                      puntos_de_accion[jugador] -= energia[jugador]
+                      apagar_humo = False
+                    elif(direccion_humo == "abajo"):
+                      tablero_de_juego[i+1][j] = '▣' 
+                      puntos_de_accion[jugador] -= energia[jugador]
+                      apagar_humo = False
+                    elif(direccion_humo == "derecha"):
+                      tablero_de_juego[i][j+1] = '▣' 
+                      puntos_de_accion[jugador] -= energia[jugador]
+                      apagar_humo = False
+                    elif(direccion_humo == "izquierda"):
+                      tablero_de_juego[i][j-1] = '▣' 
+                      puntos_de_accion[jugador] -= energia[jugador]
+                      apagar_humo = False
+                    else:
+                      print("\nDirección Inválida")
+                      apagar_humo = True
+                  # En caso de que no se encuentre ningun fuego alrededor vuelve al menú de acciones
+                  else:
+                    print("\nNo hay ningún humo alrededor!!!")
+                    apagar_humo = False
         turno += 1
     # Mostramos el estado actual del tablero de juego
     elif(opcion == 6):
