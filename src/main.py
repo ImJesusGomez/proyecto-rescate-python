@@ -107,18 +107,19 @@ def main():
         5. Jugar a Rescate!
         6. Ver Estado Actual del Tablero
         7. Rendirse
+        8. Ver estadísticas
         Elección: """))
     
 
-    # Mostramos las coordenadas del tablero
+    # ! ------------ Mostramos las coordenadas del tablero ------------
     if(opcion == 1):
       print("\nCoordenadas del Tablero: \n")
       imprimir_tablero(tablero_coordenadas)
-    # Mostramos el estado base del tablero sin preparaciones
+    # !  ------------ Mostramos el estado base del tablero sin preparaciones ------------
     elif(opcion == 2):
       print("\nEstado Base del Tablero: \n")
       imprimir_tablero(tablero_estado_base)
-    # Mostramos la simbología de los elementos de nuestro tablero
+    # !  ------------ Mostramos la simbología de los elementos de nuestro tablero ------------
     elif(opcion == 3):
       print("""\nSimbología: 
           # Pared vertical                 ||
@@ -132,7 +133,7 @@ def main():
           # Fuego                          ✦
           # Humo                           ✧
           # Punto de interes               ✆\n""")
-    # Empezamos con la primera configuración del juego, agregar los jugadores
+    # !  ------------ Empezamos con la primera configuración del juego, agregar los jugadores ------------
     elif(opcion == 4):
       continuar = True
       while(continuar):
@@ -228,7 +229,7 @@ def main():
                         direccion_valida = False
                     # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i-1][j] == '✆':
-                      pdi = random.choice[puntos_de_interes]
+                      pdi = random.choice(puntos_de_interes)
                       puntos_de_interes.pop(pdi)
 
                       # Si pdi es True entonces...
@@ -265,7 +266,7 @@ def main():
                         puntos_de_accion[jugador] -= 1
                         direccion_valida = False
                     elif tablero_de_juego[i][j-1] == '✆':
-                      pdi = random.choice[puntos_de_interes]
+                      pdi = random.choice(puntos_de_interes)
                       puntos_de_interes.pop(pdi)
 
                       # Si pdi es True entonces...
@@ -302,7 +303,7 @@ def main():
                         direccion_valida = False
                     # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i][j+1] == '✆':
-                      pdi = random.choice[puntos_de_interes]
+                      pdi = random.choice(puntos_de_interes)
                       puntos_de_interes.pop(pdi)
 
                       # Si pdi es True entonces...
@@ -339,7 +340,7 @@ def main():
                         direccion_valida = False
                     # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i+1][j] == '✆':
-                      pdi = random.choice[puntos_de_interes]
+                      pdi = random.choice(puntos_de_interes)
                       puntos_de_interes.pop(pdi)
 
                       # Si pdi es True entonces...
@@ -499,7 +500,7 @@ def main():
                   lanzamiento_valido = True
                 # En caso de que la posicion este ocupada por un jugador se desvelará automaticamente
                 elif(tablero_de_juego[i][j] in jugadores_visual):
-                  pdi = random.choice[puntos_de_interes]
+                  pdi = random.choice(puntos_de_interes)
                   puntos_de_interes.pop(pdi)
 
                   # Si pdi es True entonces...
@@ -559,7 +560,7 @@ def main():
                         explosion_fin = False
                       elif(tablero_de_juego[i + n][j] == '✆'):
                         tablero_de_juego[i + n][j] = '✦'
-                        pdi = random.choice[puntos_de_interes]
+                        pdi = random.choice(puntos_de_interes)
                         puntos_de_interes.pop(pdi)
                         # Si pdi es True entonces...
                         if(pdi): victimas_perdidas += 1 
@@ -596,7 +597,7 @@ def main():
                         explosion_fin = False
                       elif(tablero_de_juego[i][j + n] == '✆'):
                         tablero_de_juego[i][j + n] = '✦'
-                        pdi = random.choice[puntos_de_interes]
+                        pdi = random.choice(puntos_de_interes)
                         puntos_de_interes.pop(pdi)
                         # Si pdi es True entonces...
                         if(pdi): victimas_perdidas += 1 
@@ -633,7 +634,7 @@ def main():
                         explosion_fin = False
                       elif(tablero_de_juego[i + n][j] == '✆'):
                         tablero_de_juego[i + n][j] = '✦'
-                        pdi = random.choice[puntos_de_interes]
+                        pdi = random.choice(puntos_de_interes)
                         puntos_de_interes.pop(pdi)
                         # Si pdi es True entonces...
                         if(pdi): victimas_perdidas += 1 
@@ -670,7 +671,7 @@ def main():
                         explosion_fin = False
                       elif(tablero_de_juego[i][j + n] == '✆'):
                         tablero_de_juego[i][j + n] = '✦'
-                        pdi = random.choice[puntos_de_interes]
+                        pdi = random.choice(puntos_de_interes)
                         puntos_de_interes.pop(pdi)
                         # Si pdi es True entonces...
                         if(pdi): victimas_perdidas += 1 
