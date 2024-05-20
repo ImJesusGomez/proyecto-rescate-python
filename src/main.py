@@ -1,6 +1,7 @@
 # Importamos la libreria tabulate que no ayuda a darle una estructura y orden a nuestro tablero
-from tablero import coordenadas_tablero
+from tabulate import tabulate
 # Importamos las funciones de nuestro tablero
+from tablero import coordenadas_tablero
 from tablero import logica_tablero
 from tablero import preparacion_tablero
 from tablero import imprimir_tablero
@@ -89,7 +90,7 @@ def main():
   victimas_salvadas = 0
   victimas_perdidas = 0
   # Variables que usamos para ciclos while
-  perder = False
+  perder = True
   casilla_valida = True
   direccion_valida = True
   apagar_fuego = True
@@ -98,7 +99,7 @@ def main():
   print("-".center(65, "-"))
   print("\nComencemos a jugar...\n\n")
 
-  while(not perder):
+  while(perder):
     opcion = int(input("""\n\nMenú de Opciones: 
         1. Ver Coordenadas del Tablero
         2. Ver Estado Base del Tablero
@@ -150,7 +151,7 @@ def main():
           elif(jugadores >= 1 or jugadores <= 6):
             print("\nYa no puede agregar más jugadores una vez la partida ha iniciado!!!\n")
             continuar = False
-    #Comenzamos con la ejecución principal de nuestro juego
+    # !  ------------ Comenzamos con la ejecución principal de nuestro juego ------------
     elif(opcion == 5):
       if(jugadores == 0): # Usamos un if para validar que el usuario ha ingresado anteriormente la cantidad de jugadores
         print("\n\nPara jugar debes primero indicar cuántos jugadores van a jugar!!!")
@@ -482,43 +483,8 @@ def main():
         
         if(turno > 0):
           # Una vez se ha terminado el turno de todos los jugadores, tenemos que preparar el tablero para el siguiente turno
-          # 1. Primero verificamos que en el tablero haya tres puntos de interes
-            pdi_en_tablero = 0 # Inicializamos en cero para saber cuantos pdi hay 
-
-            for fila in tablero_de_juego: # Usamos un ciclo for para recorrer toda la matriz y buscar los pdi
-              for valor in fila:
-                if valor == '✆':
-                  pdi_en_tablero += 1
           
-          # En caso de que los pdi no hayan sido tres, usamos un ciclo while para colocar en nuestro tablero los pdi que faltan
-            while(pdi_en_tablero != 3): 
-              # Validamos que la posicion en donde se colocará el pdi sea válida
-              while(lanzamiento_valido):
-                i, j = lanzar_dados()
-                # En caso de que la posicion este ocupada por un valor en el que no puede estar
-                if(tablero_de_juego[i][j] in ['--', '- ', '||', '| ', '✆', ' ']):
-                  lanzamiento_valido = True
-                # En caso de que la posicion este ocupada por un jugador se desvelará automaticamente
-                elif(tablero_de_juego[i][j] in jugadores_visual):
-                  pdi = random.choice(puntos_de_interes)
-                  puntos_de_interes.pop(pdi)
-
-                  # Si pdi es True entonces...
-                  if(pdi):
-                    print("\nHaz encontrado una víctima escodida. El equipo de rescate la ha salvado.")
-                    victimas_salvadas += 1
-                    lanzamiento_valido = False
-                    pdi_en_tablero += 1
-                  else:
-                    print("Era una falsa alarma")
-                    lanzamiento_valido = False
-                    pdi_en_tablero += 1
-                else:
-                  tablero_de_juego[i][j] = '✆'
-                  lanzamiento_valido = False
-                  pdi_en_tablero += 1
-          
-          # 2. Comenzamos con las explosiones 
+          # 1. Comenzamos con las explosiones 
             colocar_humo = 0 
             while(colocar_humo != 3):
               i, j = lanzar_dados()
@@ -692,6 +658,52 @@ def main():
                       elif(tablero_de_juego[i + n][j] == ' '):
                         tablero_de_juego[i][j + (n + 1)] = '✦'
                         explosion_fin = True
+          
+          # 2. Segundo verificamos que en el tablero haya tres puntos de interes
+            pdi_en_tablero = 0 # Inicializamos en cero para saber cuantos pdi hay 
+
+            for fila in tablero_de_juego: # Usamos un ciclo for para recorrer toda la matriz y buscar los pdi
+              for valor in fila:
+                if valor == '✆':
+                  pdi_en_tablero += 1
+          
+          # En caso de que los pdi no hayan sido tres, usamos un ciclo while para colocar en nuestro tablero los pdi que faltan
+            while(pdi_en_tablero != 3): 
+              # Validamos que la posicion en donde se colocará el pdi sea válida
+              while(lanzamiento_valido):
+                i, j = lanzar_dados()
+                # En caso de que la posicion este ocupada por un valor en el que no puede estar
+                if(tablero_de_juego[i][j] in ['--', '- ', '||', '| ', '✆', ' ']):
+                  lanzamiento_valido = True
+                # En caso de que la posicion este ocupada por un jugador se desvelará automaticamente
+                elif(tablero_de_juego[i][j] in jugadores_visual):
+                  pdi = random.choice(puntos_de_interes)
+                  puntos_de_interes.pop(pdi)
+
+                  # Si pdi es True entonces...
+                  if(pdi):
+                    print("\nHaz encontrado una víctima escodida. El equipo de rescate la ha salvado.")
+                    victimas_salvadas += 1
+                    lanzamiento_valido = False
+                    pdi_en_tablero += 1
+                  else:
+                    print("Era una falsa alarma")
+                    lanzamiento_valido = False
+                    pdi_en_tablero += 1
+                else:
+                  tablero_de_juego[i][j] = '✆'
+                  lanzamiento_valido = False
+                  pdi_en_tablero += 1
+        
+        # ! ---------------- COMPROBACION DEL JUEGO ----------------
+        if(cubos_dmg >= 24):
+          print("Oh no, el edificio se ha derrumbado!!!")
+          perder = False
+        elif(victimas_perdidas >= 6):
+          print("Oh no, hemos pérdido demasidas víctimas!!! No cumplimos con nuestro deber...")
+          perder = False
+        elif(victimas_salvadas >= 7):
+          print("Perfecto! Hemos salvado a la mayoría de víctimas. ")
         print("-".center(75, "-"))
         imprimir_tablero(tablero_de_juego)
         turno += 1
@@ -701,7 +713,11 @@ def main():
         imprimir_tablero(tablero_de_juego)
     elif(opcion == 7):
       print("\nSer bombero no es trabajo para todos. Hasta la próxima!!! ")
-      break
+      perder = False
+    elif(opcion == 8):
+      estadisticas = [["Víctimas Perdida", victimas_perdidas], ["Víctima Salvadas", victimas_salvadas], ["Cubos de Daño", cubos_dmg]]
+      print("\n")
+      print(tabulate(estadisticas, tablefmt="rounded_grid", headers=["ESTADISTICA", "CANTIDAD"]))
   
 
 
