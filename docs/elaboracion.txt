@@ -3,3 +3,7 @@
 1. Dar la bienvenida al usuario al juego [✅]
 2. Definir estructura y lógica del tablero [✅]
 3. Definir el menú de opciones [✅]
+4. Definir el movimiento del jugador [✅]
+5. Definir las acciones que puede hacer [✅]
+6. Realizar las explosiones [✅]
+7. Realizar la presentación [✅]

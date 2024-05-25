@@ -6,7 +6,7 @@ from tablero import logica_tablero
 from tablero import preparacion_tablero
 from tablero import imprimir_tablero
 
-# Importamos el modulo random que usaremos a lo largo del problema
+# Importamos la libreria random que usaremos a lo largo del problema
 import random
 
 
@@ -27,15 +27,17 @@ def bienvenida_usuario():
 # Debido a la estructura de nuestro tablero, crear un dado de 6 y 8 caras no es una opción
 # por lo que crearemos una función que simule el funcionamiento que tendria el lanzar los dados
 def lanzar_dados():
-  resultados_posibles = ['2.2', '2.3', '2.5', '2.7', '2.8', '2.10', '2.12', '2.14', '3.2', '3.3', '3.5', '3.7', '3.8', '3.10', '3.12',
-                        '3.14', '5.2', '5.3', '5.5', '5.7', '5.8', '5.10', '5.12', '5.14', '6.2', '6.3', '6.5', '6.7', '6.8', '6.10', 
-                        '6.12', '6.14', '8.2', '8.3', '8.5', '8.7', '8.8', '8.10', '8.12', '8.14', '9.2', '9.3', '9.5', '9.7', 
-                        '9.8', '9.10', '9.12', '9.14']
+  resultados_posibles = ['2.2', '2.3', '2.4','2.5', '2.7', '2.8', '2.10', '2.11', '2.12', '2.13', '2.14', 
+                        '3.2', '3.3', '3.4','3.5', '3.7', '3.8', '3.10', '3.11', '3.12', '3.14', 
+                        '5.2', '5.3', '5.5', '5.6', '5.7', '5.8', '5.9', '5.10', '5.12', '5.13', '5.14', 
+                        '6.2', '6.3', '6.5', '6.6','6.7', '6.8', '6.9', '6.10', '6.12', '6.13', '6.14', 
+                        '8.2', '8.3', '8.4', '8.5', '8.6' '8.7', '8.8', '8.10', '8.11', '8.12', '8.14', 
+                        '9.2', '9.3', '9.4', '9.5', '9.6', '9.7',  '9.8', '9.10', '9.11', '9.12', '9.14']
   
   # Escoge un resultado aleatorio dentro de resultados_posibles
   resultado = random.choice(resultados_posibles)
 
-  # Lo dividimos en dos partes para obtener las coordenadas cada una por individual
+  # Lo dividimos en dos partes para obtener las coordenadas [i,j] cada una por individual
   partes = resultado.split('.')
   i = partes[0]
   i = int(i)
@@ -74,19 +76,22 @@ def main():
   jugadores = 0
   turno = 0
   coordenada = ''
-  casillas_iniciales = ['0.2', '0.3', '0.5', '0.7', '0.8', '0.10', '0.12', '0.14', '2.0', '3.0', '5.0', '6.0', '8.0', '9.0', '11.2', '11.3', '11.5', '11.7', '11.8', '11.8', '11.10', '11.12', '11.14', '2.16', '3.16', '5.16', '6.16', '8.16', '9.16']
-  casillas_iniciales_superiores = ['0.2', '0.3', '0.5', '0.7', '0.8', '0.10', '0.12', '0.14']
-  casillas_iniciales_izquierda = ['2.0', '3.0', '5.0', '6.0', '8.0', '9.0']
-  casillas_iniciales_inferiores = ['11.2', '11.3', '11.5', '11.7', '11.8', '11.8', '11.10', '11.12', '11.14']
-  casillas_iniciales_derecha = ['2.16', '3.16', '5.16', '6.16', '8.16', '9.16']
+  casillas_iniciales = ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '0.10', '0.11', '0.12', '0.13', '0.14', '0.15', '0.16',
+                        '1.0', '2.0', '3.0', '4.0', '5.0', '6.0', '7.0', '8.0', '9.0', '10.0',
+                        '11.0', '11.1', '11.2', '11.3', '11.4', '11.5', '11.6', '11.7', '11.8', '11.9', '11.10', '11.11', '11.12', '11.13', '11.14', '11.15', '11.16',
+                        '1.16', '2.16', '3.16', '4.16', '5.16', '6.16', '7.16', '8.16', '9.16', '10.16']
+  
+  casillas_iniciales_superiores = ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '0.10', '0.11', '0.12', '0.13', '0.14', '0.15', '0.16']
+  casillas_iniciales_izquierda = ['1.0', '2.0', '3.0', '4.0', '5.0', '6.0', '7.0', '8.0', '9.0', '10.0', '11.0']
+  casillas_iniciales_inferiores = ['11.0', '11.1', '11.2', '11.3', '11.4', '11.5', '11.6', '11.7', '11.8', '11.9', '11.10', '11.11', '11.12', '11.13', '11.14', '11.15', '11.16']
+  casillas_iniciales_derecha = ['1.16', '2.16', '3.16', '4.16', '5.16', '6.16', '7.16', '8.16', '9.16', '10.16']
   cubos_dmg = 0
   pdi_en_tablero = 3
   direccion = ''
   i = 0
   j = 0
-  puntos_de_accion = [4, 4, 4, 4, 4, 4]
+  puntos_de_accion = [6, 6, 6, 6, 6, 6]
   puntos_de_interes = [True, True, True, True, True, True, True, True, True, True, True, True, False, False, False, False, False, False]
-  con_persona = [False, False, False, False, False, False]
   victimas_salvadas = 0
   victimas_perdidas = 0
   # Variables que usamos para ciclos while
@@ -140,7 +145,7 @@ def main():
       continuar = True
       # Usamos un ciclo while que se repita hasta que los jugadores ingresados sean válidos
       while(continuar):
-          # Validamos que sea la primera vez que ingresa jugadores
+          # Validamos que sea la primera vez que ingresa jugadores, si no ha ingresado jugadores entonces el valor de jugadores será de 0
           if(jugadores == 0):
             jugadores = int(input("\n¿Cuántos jugadores van a jugar?\n"))
             # Validamos que los jugadores ingresados sean válidos
@@ -184,6 +189,7 @@ def main():
                 print(casilla, end = ' ')
               # Le pedimos al usuario que ingrese la casilla
               coordenada = input("\nCoordenada: ")
+              # Separamos la coordenada en partes
               partes_coordenada = coordenada.split('.')
               # Validamos que la casilla sea una en la que puede iniciar
               if coordenada in casillas_iniciales:
@@ -209,7 +215,7 @@ def main():
           for jugador in range(jugadores):
             print("-".center(100,"-"))
             print(f"Turno de {jugadores_visual[jugador]}") # Mostramos de quién es el turno
-            puntos_de_accion = [4, 4, 4, 4, 4, 4] # Declaramos los puntos de acción
+            puntos_de_accion = [6, 6, 6, 6, 6, 6] # Declaramos los puntos de acción y se reinicien siempre al comenzar un turno
             # Usamos un ciclo while que se repita hasta que el jugador se quede sin puntos de accion
             while(puntos_de_accion[jugador] >= 1):
               # Empezamos el juego oficialmente en el que el jugador deberá elegir que acción hacer
@@ -220,6 +226,7 @@ def main():
               accion = int(input("1. Moverse\n2. Apagar Fuego\n3. Apagar Humo\n4. Abrir Puerta\n5. Cerrar Puerta\n\nAcción: "))
               i, j = posicion_actual(tablero_de_juego, jugadores_visual[jugador]) # Obtenemos la posicion actual del jugador para poder realizar las acciones
               # Comenzamos con la ejecución para que el jugador pueda moverse
+              # ! -- MOVIMIENTO DEL JUGADOR
               if(accion == 1):
                 tablero_de_juego[i][j] = '▣' # La posicion actual del jugador se sustiye con una casilla vacía para que se visualice correctamente en el tablero
                 direccion_valida = True
@@ -231,7 +238,7 @@ def main():
                   # !   ------------ ARRIBA   ------------ 
                   if(direccion == "arriba"):
                     # Hacemos validaciones para que la direccion en que se quiere mover el jugador es valida
-                    # Si el jugador se encuentra en una casilla en la que no se puede mover
+                    # Si el jugador se mueve en una casilla en la que no se puede
                     if tablero_de_juego[i-1][j] in ['--', '- ','✦','✧', '▮'] + jugadores_visual:
                       print(f"No puedes moverte hacía {direccion}" )
                       direccion_valida = True
@@ -240,41 +247,37 @@ def main():
                       if tablero_de_juego[i-2][j] in ['--', '- ','✦','✧', ' ', '▮'] + jugadores_visual:
                         print(f"No puedes moverte hacía {direccion}" )
                         direccion_valida = True
+                    # En caso de que la anterior opción sea falsa, significa que el jugador se puede mover sin problemas
                       else:
-                        tablero_de_juego[i-2][j] = jugadores_visual[jugador]
-                        puntos_de_accion[jugador] -= 1
-                        direccion_valida = False
+                        tablero_de_juego[i-2][j] = jugadores_visual[jugador] # Se mueve el jugador dos casillas
+                        puntos_de_accion[jugador] -= 1 # Se consume un PA 
+                        direccion_valida = False # Se termina el ciclo while que dictamina si la dirección es válida
                     # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i-1][j] == '✆':
+                      # De la matriz puntos_de_interes seleccionamos un valor. Si el valor es TRUE significa que hay una persona, si el valor es FALSE significa que era una falsa alarma
                       pdi = random.choice(puntos_de_interes)
-                      puntos_de_interes.pop(pdi)
+                      puntos_de_interes.pop(pdi) # El valor obtenido de la seleccion se elimina del arreglo puntos_de_interes
+                      tablero_de_juego[i-1][j] = jugadores_visual[jugador] # Se mueve el jugador una casilla
 
                       # Si pdi es True entonces...
                       if(pdi):
-                        print("Es una persona!!. El equipo de rescate ha llegado y la ha salvado.")
-                        victimas_salvadas += 1
-                        tablero_de_juego[i-1][j] = jugadores_visual[jugador]
-                        puntos_de_accion[jugador] -= 1
-                        direccion_valida = False
+                        print("\nEs una persona!!. El equipo de rescate ha llegado y la ha salvado.")
+                        victimas_salvadas += 1 # Se agrega la victima a la variable victimas_salvadas
+                        puntos_de_accion[jugador] = 0 # MODIFICACION: Como en esta versión del juego no es necesario llevar a la persona afuera de la casa, para balancear, si es una persona gastará todos sus PA
                       else:
-                        print("Era una falsa alarma!!")
-                        tablero_de_juego[i-1][j] = jugadores_visual[jugador]
+                        print("\nEra una falsa alarma!!\n")
                         puntos_de_accion[jugador] -= 1
-                        direccion_valida = False
-                    # Si el jugador se puede mover sin problemas
-                    else:
-                      tablero_de_juego[i-1][j] = jugadores_visual[jugador]
-                      
-                      puntos_de_accion[jugador] -= 1
                       direccion_valida = False
+                    # Si todas las anteriores validacion son falsas el jugador se puede mover sin problemas y sin eventos especiales
+                    else:
+                      tablero_de_juego[i-1][j] = jugadores_visual[jugador] # Se mueve el jugador una casilla
+                      puntos_de_accion[jugador] -= 1 # Se gasta PA
+                      direccion_valida = False # La dirección fue válida
                   # !   ------------ IZQUIERDA   ------------ 
                   elif(direccion == "izquierda"):
-                    # Hacemos validaciones para que la direccion en que se quiere mover el jugador es valida
-                    # Si el jugador se encuentra en una casilla en la que no se puede mover
                     if tablero_de_juego[i][j-1] in ['||', '| ', '✦', '✧','▮'] + jugadores_visual: 
                       print(f"No puedes moverte hacía {direccion}" )
                       direccion_valida = True
-                    # Si el jugador se mueve a una casilla en blanco o a una puerta se moverá automaticamente una casilla más
                     elif tablero_de_juego[i][j-1] == ' ' or tablero_de_juego[i][j-1] == '▯':
                       if  tablero_de_juego[i][j-2] in ['||', '| ', '✦', '✧', '▮'] + jugadores_visual:
                         print(f"No puedes moverte hacía {direccion}" )
@@ -286,32 +289,26 @@ def main():
                     elif tablero_de_juego[i][j-1] == '✆':
                       pdi = random.choice(puntos_de_interes)
                       puntos_de_interes.pop(pdi)
-
-                      # Si pdi es True entonces...
                       if(pdi):
                         print("Es una persona!!. El equipo de rescate ha llegado y la ha salvado.")
                         victimas_salvadas += 1
                         tablero_de_juego[i][j-1] = jugadores_visual[jugador]
-                        puntos_de_accion[jugador] -= 1
+                        puntos_de_accion[jugador] = 0
                       else:
-                        print("Era una falsa alarma")
+                        print("\nEra una falsa alarma!!\n")
                         tablero_de_juego[i][j-1] = jugadores_visual[jugador]
                         puntos_de_accion[jugador] -= 1
                       
                       direccion_valida = False
-                    # Si el jugador se puede mover sin problemas
                     else:
                       tablero_de_juego[i][j-1] = jugadores_visual[jugador]
                       puntos_de_accion[jugador] -= 1
                       direccion_valida = False
                   # !   ------------ DERECHA   ------------ 
                   elif(direccion == "derecha"):
-                    # Hacemos validaciones para que la direccion en que se quiere mover el jugador es valida
-                    # Si el jugador se encuentra en una casilla en la que no se puede mover
                     if tablero_de_juego[i][j+1] in ['||', '| ', '✦', '✧', '▮'] + jugadores_visual:
                       print(f"No puedes moverte hacía {direccion}" )
                       direccion_valida = True
-                    # Si el jugador se mueve a una casilla en blanco o a una puerta abierta se moverá automaticamente una casilla más
                     elif tablero_de_juego[i][j+1] == ' ' or tablero_de_juego[i][j+1] == '▯':
                       if tablero_de_juego[i][j+2] in ['||', '| ', '✦', '✧', '▮'] + jugadores_visual:
                         print(f"No puedes moverte hacía {direccion}" )
@@ -320,60 +317,48 @@ def main():
                         tablero_de_juego[i][j+2] = jugadores_visual[jugador]
                         puntos_de_accion[jugador] -= 1
                         direccion_valida = False
-                    # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i][j+1] == '✆':
                       pdi = random.choice(puntos_de_interes)
                       puntos_de_interes.pop(pdi)
-
-                      # Si pdi es True entonces...
                       if(pdi):
                         print("Es una persona!!. El equipo de rescate ha llegado y la ha salvado.")
                         victimas_salvadas += 1
                         tablero_de_juego[i][j+1] = jugadores_visual[jugador]
-                        puntos_de_accion[jugador] -= 1
+                        puntos_de_accion[jugador] = 0
                       else:
-                        print("Era una falsa alarma")
+                        print("\nEra una falsa alarma!!\n")
                         tablero_de_juego[i][j+1] = jugadores_visual[jugador]
                         puntos_de_accion[jugador] -= 1
                       
                       direccion_valida = False
-                    # Si el jugador se puede mover sin problemas
                     else:
                       tablero_de_juego[i][j+1] = jugadores_visual[jugador]
                       puntos_de_accion[jugador] -= 1
                       direccion_valida = False
                   # !   ------------ ABAJO   ------------ 
                   elif(direccion == "abajo"):
-                    # Hacemos validaciones para que la direccion en que se quiere mover el jugador es valida
-                    # Si el jugador se encuentra en una casilla en la que no se puede mover
-                    if tablero_de_juego[i+1][j] in ['--', '- ', '✦', '✧'] + jugadores_visual:
+                    if tablero_de_juego[i+1][j] in ['--', '- ', '✦', '✧', '▮'] + jugadores_visual:
                       print(f"No puedes moverte hacía {direccion}" )
                       direccion_valida = True
-                    # Si el jugador se mueve a una casilla en blanco o a una puerta se moverá automaticamente una casilla más
                     elif tablero_de_juego[i+1][j] == ' ' or tablero_de_juego[i+1][j] == '▯':
-                      if tablero_de_juego[i+2][j] in ['--', '- ', '✦', '✧', ''] + jugadores_visual:
+                      if tablero_de_juego[i+2][j] in ['--', '- ', '✦', '✧', '▮'] + jugadores_visual:
                         print(f"No puedes moverte hacía {direccion}" )
                         direccion_valida = True
                       else:
                         tablero_de_juego[i+2][j] = jugadores_visual[jugador]
                         puntos_de_accion[jugador] -= 1
                         direccion_valida = False
-                    # Si al momento de moverse hay una victíma
                     elif tablero_de_juego[i+1][j] == '✆':
                       pdi = random.choice(puntos_de_interes)
                       puntos_de_interes.pop(pdi)
-
-                      # Si pdi es True entonces...
                       if(pdi):
                         print("Es una persona!!. El equipo de rescate ha llegado y la ha salvado.")
                         victimas_salvadas += 1
                         tablero_de_juego[i+1][j] = jugadores_visual[jugador]
-                        tablero_de_juego[i][j] = '▣'
-                        puntos_de_accion[jugador] -= 1
+                        puntos_de_accion[jugador] = 0
                       else:
-                        print("Era una falsa alarma")
+                        print("\nEra una falsa alarma!!\n")
                         tablero_de_juego[i+1][j] = jugadores_visual[jugador]
-                        tablero_de_juego[i][j] = '▣'
                         puntos_de_accion[jugador] -= 1
                       
                       direccion_valida = False
@@ -389,20 +374,23 @@ def main():
               # Comenzamos con la ejecución para apagar fuego
               elif(accion == 2):
                 apagar_fuego = True
+                # Comenzamos un ciclo while que se ejecutará hasta que se apague el fuego
                 while(apagar_fuego):
                 # Comprobamos si hay un fuego que apagar alrededor del jugador
                   if(tablero_de_juego[i-1][j] == '✦' or tablero_de_juego[i+1][j] == '✦' or tablero_de_juego[i][j-1] == '✦' or tablero_de_juego[i][j+1] == '✦' or ((tablero_de_juego[i-1][j] == ' ' or tablero_de_juego[i-1][j] == '▯') and tablero_de_juego[i-2][j] == '✦')) or ((tablero_de_juego[i+1][j] == ' ' or tablero_de_juego[i+1][j] == '▯') and tablero_de_juego[i+2][j] == '✦') or ((tablero_de_juego[i][j-1] == ' ' or tablero_de_juego[i][j-1] == '▯') and tablero_de_juego[i][j-2] == '✦') or ((tablero_de_juego[i][j+1] == ' ' or tablero_de_juego[i][j+1] == '▯') and tablero_de_juego[i][j+2] == '✦'):
+                    # Le preguntamos al usuario en que dirección quiere apagar el fuego
                     direccion_fuego = input("Indica en qué dirección quieres apagar el fuego (arriba - abajo - derecha - izquierda)\nDirección: ")
                     
                     # En la direccion en la que ingreso el usuario apagamos el fuego
                     if(direccion_fuego == "arriba"):
                       if(tablero_de_juego[i-1][j] == '✦'):
-                        tablero_de_juego[i-1][j] = '✧' 
+                        tablero_de_juego[i-1][j] = '✧'  # Se sustituye el fuego por una casilla de humo
                     # Por la estructura de nuestro tablero, tenemos que hacer comprobaciones de más
                       elif((tablero_de_juego[i-1][j] == ' ' or tablero_de_juego[i-1][j] == '▯') and tablero_de_juego[i-2][j] == '✦'):
                         tablero_de_juego[i-2][j] = '✧' # Se sustituye el fuego por una casilla de humo
                       puntos_de_accion[jugador] -= 1 # Se gasta el PA por apagar fuego
-                      apagar_fuego = False # Si se ha apagado un humo correctamente, se deja de repetir el ciclo while
+                      apagar_fuego = False # Si se ha apagado un fuego correctamente, se deja de repetir el ciclo while
+                    # SE REPITE EL MISMO PROCESO CON CADA DIRECCIóN
                     elif(direccion_fuego == "abajo"):
                       if(tablero_de_juego[i+1][j] == '✦'):
                         tablero_de_juego[i+1][j] = '✧' 
@@ -435,22 +423,24 @@ def main():
               # !  ------------  APAGAR HUMO  ------------ 
               # Comenzamos con la logica para apagar el humo
               elif(accion == 3):
-                
                 apagar_humo = True
+                # Comenzamos un ciclo while que se ejecutará hasta que se apague el humo
                 while(apagar_humo):
                 # Comprobamos si hay un humo que apagar alrededor del jugador
                   if(tablero_de_juego[i-1][j] == '✧' or tablero_de_juego[i+1][j] == '✧' or tablero_de_juego[i][j-1] == '✧' or tablero_de_juego[i][j+1] == '✧' or ((tablero_de_juego[i-1][j] == ' ' or tablero_de_juego[i-1][j] == '▯') and tablero_de_juego[i-2][j] == '✧')) or ((tablero_de_juego[i+1][j] == ' ' or tablero_de_juego[i+1][j] == '▯')  and tablero_de_juego[i+2][j] == '✧') or ((tablero_de_juego[i][j+1] == ' ' or tablero_de_juego[i][j+1] == '▯')  and tablero_de_juego[i][j+2] == '✧') or ((tablero_de_juego[i][j-1] == ' ' or tablero_de_juego[i][j-1] == '▯')  and tablero_de_juego[i][j-2] == '✧'):
+                    # Le preguntamos al usuario en que dirección quiere apagar el fuego
                     direccion_humo = input("Indica en qué dirección quieres apagar el humo (arriba - abajo - derecha - izquierda)\nDirección: ")
 
                     # En la direccion en la que ingreso el usuario apagamos el humo
                     if(direccion_humo == "arriba"):
                       if(tablero_de_juego[i-1][j] == '✧'):
-                        tablero_de_juego[i-1][j] = '▣' 
+                        tablero_de_juego[i-1][j] = '▣' # Se sustituye el fuego por una casilla vacia
                     # Por la estructura de nuestro tablero, tenemos que hacer comprobaciones de más
                       elif((tablero_de_juego[i-1][j] == ' ' or tablero_de_juego[i-1][j] == '▯') and tablero_de_juego[i-2][j] == '✧'):
-                        tablero_de_juego[i-2][j] = '▣'  # Se sustituye el humo por una casilla normal
+                        tablero_de_juego[i-2][j] = '▣'  # Se sustituye el humo por una casilla vacia
                       puntos_de_accion[jugador] -= 1 # Se consume los PA por apagar humo
                       apagar_humo = False # si se ha apagado un humo correctamente, se deja de repetir el ciclo while
+                    # SE REPITE EL MISMO PROCESO CON CADA DIRECCIóN
                     elif(direccion_humo == "abajo"):
                       if(tablero_de_juego[i+1][j] == '✧'):
                         tablero_de_juego[i+1][j] = '▣' 
@@ -472,11 +462,11 @@ def main():
                         tablero_de_juego[i][j-2] = '▣' 
                       puntos_de_accion[jugador] -= 1
                       apagar_humo = False
-                    # En caso de que no se encuentre ningun fuego alrededor vuelve al menú de acciones
+                    # En caso de que no se encuentre ningun humo alrededor vuelve al menú de acciones
                     else:
                       print("\nDirección Inválida")
                       apagar_humo = True
-                  # En caso de que no se encuentre ningun fuego alrededor vuelve al menú de acciones
+                  # En caso de que no se encuentre ningun humo alrededor vuelve al menú de acciones
                   else:
                     print("\nNo hay ningún humo alrededor!!!")
                     apagar_humo = False
@@ -511,7 +501,7 @@ def main():
               elif(accion == 5):
                 # Comprobamos si hay una puerta alrededor de nosotros
                 if(tablero_de_juego[i-1][j] == '▯' or tablero_de_juego[i+1][j] == '▯' or tablero_de_juego[i][j-1] == '▯' or tablero_de_juego[i][j+1] == '▯'):
-                  # En este caso no hay necesidad de preguntarle al usuario en que direccion quiere abrir la puerta
+                  # En este caso no hay necesidad de preguntarle al usuario en que direccion quiere cerrar la puerta
                   
                   # Puerta en la dirrección de arriba
                   if(tablero_de_juego[i-1][j] == '▯'):
@@ -529,7 +519,7 @@ def main():
                   elif(tablero_de_juego[i][j+1] == '▯'):
                     tablero_de_juego[i][j+1] = '▮'
                     puntos_de_accion[jugador] -= 1
-                # Se comprueba que no hay ninguna puerta abierta alrededor
+                # Se comprueba que no hay ninguna puerta cerrada alrededor
                 else:
                   print("\nNo hay ninguna puerta abierta alrededor!!")
               # Si el jugador ingresa una accion invalida se le indicará
@@ -537,63 +527,77 @@ def main():
                 print("\nAcción Inválida")
         
         # !  ------------   PREPARAR EL TABLERO PARA EL SIGUIENTE TURNO  ------------ 
-        if(turno > 0):
+        if(turno > 0): # Las explosiones tienen que ocurrir despues del turno 1
           # Una vez se ha terminado el turno de todos los jugadores, tenemos que preparar el tablero para el siguiente turno
-          
           # 1. Comenzamos con las explosiones 
             colocar_humo = 0 
             # Usamos un ciclo while para que se coloquen los tres humos
             while(colocar_humo != 3):
-              i, j = lanzar_dados()
-              print(f"Humo en las casillas: {i, j}")
+              i, j = lanzar_dados() # Obtenemos una casilla donde caera el humo
+              print(f"Humo en las casillas: {i, j}") # Mostramos en que casilla cayó
               print(tablero_de_juego[i][j])
                 # !  ------------  EXPLOSION  ------------ 
               if(tablero_de_juego[i][j] == '✦'): # El humo ha caido en una casilla donde hay fuego
-                print("explosion")
-                colocar_humo += 1
+                print("Explosion!!!")
+                colocar_humo += 1 # Se coloca un humo
+                # Comenzamos con la explosión, para cada lado
                 for direccion in ["arriba", "derecha", "abajo", "izquierda"]:
                   n = 0 # Usamos una variable global que recorrerá cada dirección hasta que pare la explosion
                   explosion_fin = True
                   while(explosion_fin):
                     # ! ---------------- EXPLOSION ARRIBA ----------------
                     if(direccion == "arriba"):
+                      # Variable que nos ayudará a recorr hacía arriba
                       n += -1
-                      if i + n < 0:  # Verificar límite superior
+                      if i + n < 0:  # Verificar que la explosión no salga de la matriz
                         break
-                      if(tablero_de_juego[i + n][j] == '▣'):
-                        tablero_de_juego[i + n][j] =  '✦'
-                        explosion_fin = True
-                      elif(tablero_de_juego[i + n][j] == '--'):
-                        tablero_de_juego[i + n][j] = '- '
-                        cubos_dmg += 1
-                        explosion_fin = False
-                      elif(tablero_de_juego[i + n][j] == '- '):
-                        tablero_de_juego[i + n][j] = ' '
-                        cubos_dmg += 1
-                        explosion_fin = False
-                      elif(tablero_de_juego[i + n][j] == '✆'):
-                        tablero_de_juego[i + n][j] = '✦'
+                      # Comiezan los cambios por las explosiones
+                      if(tablero_de_juego[i + n][j] == '▣'): # Si hay una casilla vacia...
+                        tablero_de_juego[i + n][j] =  '✦' # Se convierte en fuego
+                        explosion_fin = True # La explosión continua
+                      elif(tablero_de_juego[i + n][j] == '--'): # Si hay una pared completa...
+                        tablero_de_juego[i + n][j] = '- ' # Se romperá a la mitad
+                        cubos_dmg += 1 # Se añade un cubo de daño
+                        explosion_fin = False # La explosión termina
+                      elif(tablero_de_juego[i + n][j] == '- '): # Si hay una pared media rota...
+                        tablero_de_juego[i + n][j] = ' ' # Se romperá completamente
+                        cubos_dmg += 1 # Se añade un cubo de daño
+                        explosion_fin = False # La explosión termina
+                      elif(tablero_de_juego[i + n][j] == '✆'): # Si hay un PDI este perderá
+                        tablero_de_juego[i + n][j] = '✦' # Se convierte en fuego MURIó :(
+                        # Seleccionamos un valor de puntos_de_interes para eliminarlo
                         pdi = random.choice(puntos_de_interes)
                         puntos_de_interes.pop(pdi)
                         # Si pdi es True entonces...
-                        if(pdi): victimas_perdidas += 1 
-                        else: pass
-                        explosion_fin = True
-                      elif(tablero_de_juego[i + n][j] == '✧'):
-                        tablero_de_juego[i + n][j] =  '✦'
-                        explosion_fin = True
-                      elif(tablero_de_juego[i + n][j] in jugadores_visual):
-                        posicion = random.choice(casillas_iniciales)
-                        partes = posicion.split('.')
-                        i = int(partes[0])
-                        j = int(partes[1])
-                        tablero_de_juego[i][j] = jugadores_visual[jugador_encontrado]
-                        explosion_fin = True
-                      elif(tablero_de_juego[i + n][j] == '▮'):
-                        tablero_de_juego[i + n][j] = '▯'
-                      elif(tablero_de_juego[i + n][j] == ' '):
-                        tablero_de_juego[i + (n + 1)][j] = ' '
-                        explosion_fin = False
+                        if(pdi): victimas_perdidas += 1 # Perdimos a la victima :(
+                        else: pass # No pasa nada, era una falsa alarma :)
+                        explosion_fin = True # La explosión continúa
+                      elif(tablero_de_juego[i + n][j] == '✧'): # Si hay una casilla con humo
+                        tablero_de_juego[i + n][j] =  '✦' # Esta se convierte en fugo
+                        explosion_fin = True # La explosión continua
+                      elif(tablero_de_juego[i + n][j] in jugadores_visual): # Si la explosión se expande hasta que le llega a un jugador
+                        # Identificamos que jugador es afectado por la explosión
+                        jugador_encontrado = jugadores_visual.index(tablero_de_juego[i + n][j])
+                        tablero_de_juego[i + n][j] =  '✦' # La casilla se convierte en fuego
+                        casilla_valida = True
+                        while(casilla_valida):
+                        # Tomamos una posición inicial del tablero y mandamos al jugador a ella
+                          posicion = random.choice(casillas_iniciales)
+                          partes = posicion.split('.')
+                          k = int(partes[0])
+                          l = int(partes[1])
+                          if(tablero_de_juego[k][l] in jugadores_visual):
+                            casilla_valida = True
+                          else:
+                            tablero_de_juego[k][l] = jugadores_visual[jugador_encontrado] 
+                            casilla_valida = False
+                        explosion_fin = True # La explosión continua
+                      elif(tablero_de_juego[i + n][j] == '▮'): # Si hay una puerta cerrada...
+                        tablero_de_juego[i + n][j] = '▯' # Esta se abre
+                        explosion_fin = False # La explosión termina
+                      elif(tablero_de_juego[i + n][j] == ' '): # Si hay un espacio vacio...
+                        tablero_de_juego[i + n][j] = ' ' # Se queda asi
+                        explosion_fin = True # La explosión continua
                     # ! ---------------- EXPLOSION DERECHA ----------------
                     elif(direccion == "derecha"):
                       n += 1
@@ -624,16 +628,25 @@ def main():
                         tablero_de_juego[i][j + n] =  '✦'
                         explosion_fin = True
                       elif(tablero_de_juego[i][j + n] in jugadores_visual):
-                        posicion = random.choice(casillas_iniciales)
-                        partes = posicion.split('.')
-                        i = int(partes[0])
-                        j = int(partes[1])
-                        tablero_de_juego[i][j] = jugadores_visual[jugador_encontrado]
+                        jugador_encontrado = jugadores_visual.index(tablero_de_juego[i][j + n])
+                        tablero_de_juego[i][j + n] =  '✦' 
+                        casilla_valida = True
+                        while(casilla_valida):
+                          posicion = random.choice(casillas_iniciales)
+                          partes = posicion.split('.')
+                          k = int(partes[0])
+                          l = int(partes[1])
+                          if(tablero_de_juego[k][l] in jugadores_visual):
+                            casilla_valida = True
+                          else:
+                            tablero_de_juego[k][l] = jugadores_visual[jugador_encontrado]
+                            casilla_valida = False
                         explosion_fin = True
                       elif(tablero_de_juego[i][j + n] == '▮'):
                         tablero_de_juego[i][j + n] = '▯'
+                        explosion_fin = False
                       elif(tablero_de_juego[i][j + n] == ' '):
-                        tablero_de_juego[i][j + (n + 1)] = ' '
+                        tablero_de_juego[i][j + n] = ' '
                         explosion_fin = True
                     # ! ---------------- EXPLOSION ABAJO ----------------
                     elif(direccion == "abajo"):
@@ -664,16 +677,25 @@ def main():
                         tablero_de_juego[i + n][j] =  '✦'
                         explosion_fin = True
                       elif(tablero_de_juego[i + n][j] in jugadores_visual):
-                        posicion = random.choice(casillas_iniciales)
-                        partes = posicion.split('.')
-                        i = int(partes[0])
-                        j = int(partes[1])
-                        tablero_de_juego[i][j] = jugadores_visual[jugador_encontrado]
+                        jugador_encontrado = jugadores_visual.index(tablero_de_juego[i + n][j])
+                        tablero_de_juego[i + n][j] =  '✦' 
+                        casilla_valida = True
+                        while(casilla_valida):
+                          posicion = random.choice(casillas_iniciales)
+                          partes = posicion.split('.')
+                          k = int(partes[0])
+                          l = int(partes[1])
+                          if(tablero_de_juego[k][l] in jugadores_visual):
+                            casilla_valida = True
+                          else:
+                              tablero_de_juego[k][l] = jugadores_visual[jugador_encontrado]
+                              casilla_valida = False
                         explosion_fin = True
                       elif(tablero_de_juego[i + n][j] == '▮'):
                         tablero_de_juego[i + n][j] = '▯'
+                        explosion_fin = False
                       elif(tablero_de_juego[i + n][j] == ' '):
-                        tablero_de_juego[i + (n + 1)][j] = ' '
+                        tablero_de_juego[i + n][j] = ' '
                         explosion_fin = False
                     # ! ---------------- EXPLOSION IZQUIERDA ----------------
                     elif(direccion == "izquierda"):
@@ -703,78 +725,92 @@ def main():
                         tablero_de_juego[i][j + n] =  '✦'
                         explosion_fin = True
                       elif(tablero_de_juego[i][j + n] in jugadores_visual):
-                        posicion = random.choice(casillas_iniciales)
-                        partes = posicion.split('.')
-                        i = int(partes[0])
-                        j = int(partes[1])
-                        tablero_de_juego[i][j] = jugadores_visual[jugador_encontrado]
-                        explosion_fin = True
+                        jugador_encontrado = jugadores_visual.index(tablero_de_juego[i][j + n])
+                        tablero_de_juego[i][j + n] =  '✦' 
+                        casilla_valida = True
+                        while(casilla_valida):
+                          posicion = random.choice(casillas_iniciales)
+                          partes = posicion.split('.')
+                          k = int(partes[0])
+                          l = int(partes[1])
+                          if(tablero_de_juego[k][l] in jugadores_visual):
+                            casilla_valida = True
+                          else:
+                            tablero_de_juego[k][k] = jugadores_visual[jugador_encontrado]
+                            casilla_valida = False
+                          explosion_fin = True
                       elif(tablero_de_juego[i][j + n] == '▮'):
                         tablero_de_juego[i][j + n] = '▯'
+                        explosion_fin = False
                       elif(tablero_de_juego[i + n][j] == ' '):
-                        tablero_de_juego[i][j + (n + 1)] = ' '
+                        tablero_de_juego[i][j + n] = ' '
                         explosion_fin = True
-              elif(tablero_de_juego[i-1][j] == '✦' or tablero_de_juego[i+1][j] == '✦' or tablero_de_juego[i][j-1] == '✦' or tablero_de_juego[i][j+1] == '✦'): # Si en alguna casilla adyacente hay fuego, entonces se convierte automaticamente en fuego
-                tablero_de_juego[i][j] = '✦'
-                colocar_humo += 1
-              elif(tablero_de_juego[i][j] == '▣'): # Si cae en una casilla vacia esta tendrá humo
-                tablero_de_juego[i][j] = '✧'
-                colocar_humo += 1
+              # Verificamos las otras posibilidades
+              elif(tablero_de_juego[i-1][j] == '✦' or tablero_de_juego[i+1][j] == '✦' or tablero_de_juego[i][j-1] == '✦' or tablero_de_juego[i][j+1] == '✦'): 
+                tablero_de_juego[i][j] = '✦' # Si en alguna casilla adyacente hay fuego, entonces se convierte automaticamente en fuego
+                colocar_humo += 1 # Se añade un humo
+              elif(tablero_de_juego[i][j] == '▣'): # Si cae en una casilla vacia....
+                tablero_de_juego[i][j] = '✧' # Esta tendrá humo
+                colocar_humo += 1 # Se añade un humo
               elif(tablero_de_juego[i][j] in jugadores_visual): # Si en la casilla hay algun jugador, este regresará al inicio
                 # Obtener el índice del jugador en la lista
                 jugador_encontrado = jugadores_visual.index(tablero_de_juego[i][j])
+                # Seleccionar una casilla incial y el jugador lo mandaremos ahi
                 posicion = random.choice(casillas_iniciales)
                 partes = posicion.split('.')
                 k = int(partes[0])
                 l = int(partes[1])
                 tablero_de_juego[k][l] = jugadores_visual[jugador_encontrado]
-                tablero_de_juego[i][j] = '▣'
-                colocar_humo += 1
+                tablero_de_juego[i][j] = '✧' # Se coloca un humo en la casilla del jugador
+                colocar_humo += 1 # Se añade un humo
           
           # 2. Segundo verificamos que en el tablero haya tres puntos de interes
             pdi_en_tablero = 0 # Inicializamos en cero para saber cuantos pdi hay 
-
             for fila in tablero_de_juego: # Usamos un ciclo for para recorrer toda la matriz y buscar los pdi
               for valor in fila:
                 if valor == '✆':
                   pdi_en_tablero += 1
-          
           # En caso de que los pdi no hayan sido tres, usamos un ciclo while para colocar en nuestro tablero los pdi que faltan
             while(pdi_en_tablero != 3): 
               # Validamos que la posicion en donde se colocará el pdi sea válida
+              lanzamiento_valido = True
               while(lanzamiento_valido):
-                i, j = lanzar_dados()
+                i, j = lanzar_dados() # Se lanzan los dados para saber en que casilla caerá el PDI
                 print(f"Punto de Interés en la casilla: {i, j}")
                 # En caso de que la posicion este ocupada por un valor en el que no puede estar
                 if(tablero_de_juego[i][j] in ['--', '- ', '||', '| ', '✆', ' ']):
-                  lanzamiento_valido = True
+                  lanzamiento_valido = True # Se vuelve a lanzar
                 # En caso de que la posicion este ocupada por un jugador se desvelará automaticamente
                 elif(tablero_de_juego[i][j] in jugadores_visual):
+                  # Seleccionaremos un valor de punto_de_interes
                   pdi = random.choice(puntos_de_interes)
+                  # Lo eliminamos de la matriz
                   puntos_de_interes.pop(pdi)
 
                   # Si pdi es True entonces...
                   if(pdi):
-                    print("\nHaz encontrado una víctima escodida. El equipo de rescate la ha salvado.")
-                    victimas_salvadas += 1
-                    lanzamiento_valido = False
-                    pdi_en_tablero += 1
+                    print("\nHaz encontrado una víctima escondida. El equipo de rescate la ha salvado!!!")
+                    victimas_salvadas += 1 # Se añade la victima a victimas salvadas
+                    lanzamiento_valido = True # Se vuelve a tirar el dado porque se descubrió a la victima
                   else:
                     print("Era una falsa alarma")
-                    lanzamiento_valido = False
-                    pdi_en_tablero += 1
+                    lanzamiento_valido = True # Se vuelve a tirar el dado porque se descubrió a la victima
+                # Si todo lo anterioir es falso, se coloca el PDI
                 else:
-                  tablero_de_juego[i][j] = '✆'
-                  lanzamiento_valido = False
-                  pdi_en_tablero += 1
+                  tablero_de_juego[i][j] = '✆' # Se coloca en la casilla
+                  lanzamiento_valido = False # El lanzamiento fue valido
+                  pdi_en_tablero += 1 # Se colca un PDI en el tablero
         
         # ! ---------------- COMPROBACION DEL JUEGO ----------------
+        # Si hay 24 cubos de daño perdemos
         if(cubos_dmg >= 24):
           print("Oh no, el edificio se ha derrumbado!!!")
           no_perder = False
+        # Si las victimas perdidas es mayor o igual a 6 perdemos
         elif(victimas_perdidas >= 6):
           print("Oh no, hemos pérdido demasidas víctimas!!! No cumplimos con nuestro deber...")
           no_perder = False
+        # Si salvamos a 7 victimas ganamos!!
         elif(victimas_salvadas >= 7):
           print("VICTORIA!!!!! Hemos salvado a la mayoría de víctimas. ")
           no_perder = False
@@ -788,7 +824,7 @@ def main():
     # !  ------------  EL JUGADOR SE HA RENDIDO  ------------ 
     elif(opcion == 7):
       print("\nSer bombero no es trabajo para todos. Hasta la próxima!!! ")
-      perder = False
+      no_perder = False
     # !  ------------  MOSTRAMOS LAS ESTADISTICAS DE LA PARTIDA  ------------ 
     elif(opcion == 8):
       estadisticas = [["Víctimas Perdida", victimas_perdidas], ["Víctima Salvadas", victimas_salvadas], ["Cubos de Daño", cubos_dmg]]
@@ -798,7 +834,7 @@ def main():
 
 
 
-# ! !  ------------  SE EJECUTA NUESTRO CODIGO ------------ 
+# !  ------------  SE EJECUTA NUESTRO CODIGO ------------ 
 main()
 
 
